@@ -1,0 +1,355 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 0;
+}
+
+.special-font {
+  font-family: "Marck Script", cursive;
+}
+
+.archiveh2 {
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  font-size: 1.9rem;
+  margin-left: 2%;
+}
+
+.archiveh3 {
+  font-family: "Lato", sans-serif;
+  font-weight: 500;
+  font-size: 1.8rem;
+  padding-top: 20px;
+}
+
+.headerf {
+  font-family: "Quicksand", sans-serif;
+  font-size: 0.9rem;
+}
+
+header {
+  text-align: center;
+  margin-top: 1%;
+}
+
+header img {
+  width: 100%;
+  max-width: 250px;
+  margin: 0 auto;
+  height: 100px;
+  max-width: 100%; /* Ensure the image is responsive and fits within its container */
+  max-height: 100%; /* Ensure the image does not exceed the height of its container */
+  object-fit: contain;
+}
+
+.content {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.nav-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: 13px;
+  justify-content: center;
+}
+
+.nav-list li {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.nav-list a {
+  text-decoration: none;
+  color: black;
+}
+
+hr {
+  width: 100%;
+  margin: 10px 0;
+}
+
+.image-container img {
+  max-width: 200px;
+  height: 150px;
+}
+
+.image-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 3%;
+}
+
+.vertical-line {
+  height: 100%;
+  border-left: 1px solid black;
+  margin-left: 10px;
+}
+
+.text-container p {
+  margin: 0;
+  margin-left: 4%;
+  /* Adjust paragraph styling as needed */
+  border-left: 1px solid grey;
+  /* Add a vertical line to the left of the paragraph */
+  padding-left: 10px;
+  /* Adjust padding as needed */
+}
+
+.icons .fa-brands {
+  color: #f44336;
+  margin: 0 7%;
+  cursor: pointer;
+  padding: 18px 0;
+  font-size: 1.3rem;
+}
+
+.icons .fa-brands:hover {
+  color: grey;
+  transition: 0.8s;
+}
+
+.icons a{
+  text-decoration: none;
+}
+
+
+.h {
+  margin: 0;
+}
+
+.podimg {
+  width: 100%;
+  max-width: 470px;
+  margin: 0 auto;
+  height: 300px;
+}
+
+.share {
+  margin: 0;
+  width: 29%;
+}
+
+.share a{
+  text-decoration: none;
+}
+
+.share1 {
+  display: inline-block;
+  padding-right: 15px;
+}
+
+.share .fa-brands {
+  color: #ad42ce;
+  margin: 0 7px;
+  cursor: pointer;
+  padding: 13px 0;
+  display: inline-block;
+  font-size: 1.2rem;
+}
+
+.share .fa-brands:hover {
+  color: red;
+  transition: 0.8s;
+}
+
+@media (max-width: 768px) {
+  .share {
+    width: 90%; /* Adjust the width as needed */
+    margin: 0 auto; /* Center the container */
+  }
+}
+
+.podp {
+  color: black;
+}
+
+@media (max-width: 768px) {
+  .content {
+    width: 90%;
+  }
+
+  
+
+  hr {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+  }
+
+  .nav-list {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .nav-list li {
+    margin: 0;
+    font-size: 0.9rem;
+    padding: 5px;
+  }
+
+  .text-container p {
+    margin-left: 2%;
+  }
+
+  .h {
+    margin: auto;
+    display: none;
+  }
+
+  .podi{
+    text-align: center;
+  }
+
+  .podimg {
+    border-radius: 4px;
+    width: 90%;
+  }
+
+  .podi p{
+    width: 90%;
+    margin: auto;
+    padding-top: 1%;
+  }
+
+  .spacing {
+    width: 90%;
+    margin: auto;
+  }
+
+  .archiveh2 {
+    margin-left: 5%;
+    font-size: 1.6rem;
+    margin-bottom: 7%;
+    margin-top: 9%;
+  }
+
+  .image-container{
+    display: none;
+  }
+
+  .special-font{
+    font-size: 0.9rem;
+  }
+
+  .nav-list li{
+    font-size: 0.8rem;
+  }
+
+  .nav-list{
+    margin: auto;
+    margin-top: 3%;
+  }
+
+  .icons .fa-brands {
+    margin: 0 2%;
+    font-size: 1.1rem;
+  }
+
+  .icons a{
+    text-decoration: none;
+  }
+
+  .share a{
+    text-decoration: none;
+  }
+
+  body{
+    width: 95%;
+    margin: auto;
+  }
+
+  .linkp{
+    width: 90%;
+    margin: auto;
+  }
+
+  .spacingi{
+    width: 90%;
+    margin: auto;
+  }
+  
+ 
+}
+
+.subscribe{
+  font-weight: 100;
+  font-size: 1.7rem;
+}
+
+.linkp a p {
+  display: inline;
+  margin-right: 12px; /* Adjust the margin as needed */
+}
+
+.linkp a{
+  color: black;
+}
+
+.spacingi i,
+.spacingi p {
+    display: inline-block;
+    vertical-align: middle; /* Adjust the vertical alignment as needed */
+}
+
+.spacingi .episode {
+  margin-bottom: 1px; /* Adjust the margin as needed */
+}
+
+.episode i{
+  font-size: 0.8rem;
+}
+
+.episode p{
+  width: 90%;
+}
+
+.episode a{
+  text-decoration: none;
+  color: black;
+}
+
+/* CSS for dropdown content */
+#dropdown-content {
+  position: relative;
+}
+
+
+/* CSS to style the active state of the dropdown content */
+#dropdown-content p:hover {
+  background-color: white;
+}
+
+/* CSS to style the container when hovering over it */
+.spacing:hover #dropdown-content {
+  display: block;
+}
+
+/* CSS for styling the list items in the dropdown */
+#dropdown-content p {
+  color: #333;
+  padding: 12px 5px;
+  text-decoration: none;
+  display: block;
+  cursor: pointer;
+}
+
+/* CSS for clicked state of the main p tag */
+#dropdown-content p.clicked {
+  font-weight: bold;
+}
+
+/* CSS for styling the popup message */
+.message-container {
+  font-family:"Quicksand", sans-serif; /* Add your preferred font here */
+  font-size: 15px; /* Adjust font size as needed */
+  color: #007bff; /* Adjust text color as needed */
+  margin: 5px 0 0 2%; /* Add spacing and left margin */
+  white-space: pre-wrap; /* Allow white spaces to break and wrap*/
+  max-width: 470px;
+}
