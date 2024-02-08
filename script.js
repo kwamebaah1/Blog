@@ -36,7 +36,7 @@ document.getElementById('bookUploadForm').addEventListener('submit', async (even
     formData.append('image', document.getElementById('bookImage').files[0]);
 
     try {
-        const response = await fetch('https://gleaming-cuchufli-b12691.netlify.app/books', {
+        const response = await fetch('https://gleaming-cuchufli-b12691.netlify.app', {
             method: 'POST',
             body: formData
         });
