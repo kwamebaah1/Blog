@@ -20,19 +20,23 @@ const handleBookUpload = async (formData) => {
 // New function to handle book retrieval
 const handleBookRetrieval = async () => {
     try {
-        const response = await fetch('https://gleaming-cuchufli-b12691.netlify.app/.netlify/functions/getBooks', {
-            method: 'GET'
-        });
-
-        if (response.ok) {
-            const books = await response.json();
-            console.log('Books retrieved successfully:', books);
-            // Update the UI to display the retrieved books
-        } else {
-            console.error('Failed to retrieve books:', response.statusText);
-        }
+        // Simulated array of books, replace this with actual data retrieval logic
+        const books = [
+            { title: 'Book 1', description: 'Description of Book 1' },
+            { title: 'Book 2', description: 'Description of Book 2' }
+        ];
+        
+        // Respond with the array of books
+        return {
+            statusCode: 200,
+            body: JSON.stringify(books)
+        };
     } catch (error) {
         console.error('Error retrieving books:', error);
+        return {
+            statusCode: 500,
+            body: JSON.stringify({ error: 'Internal Server Error' })
+        };
     }
 };
 
@@ -61,11 +65,8 @@ exports.handler = async (event) => {
         }
     } else if (event.httpMethod === 'GET') {
         // Handle GET requests for retrieving books
-        await handleBookRetrieval();
-        return {
-            statusCode: 200,
-            body: JSON.stringify({ message: 'Books retrieved successfully' })
-        };
+        const retrievalResult = await handleBookRetrieval();
+        return retrievalResult;
     } else {
         // Respond with an error for other HTTP methods
         return {
