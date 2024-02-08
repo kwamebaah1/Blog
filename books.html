@@ -4,16 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Two One Show</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Quicksand&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="index.css" />
     <link
       rel="icon"
       href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/8049352/8049352-1636130317778-cf3f4afff543c.jpg"
       type="image/x-icon"
     />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Quicksand&display=swap"
-      rel="stylesheet"
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
       rel="stylesheet"
@@ -23,7 +31,6 @@
 </head>
 <body>
     <header>
-        <!-- Header content -->
         <img src="2show.jpeg" alt="Your Image Description" />
         <hr />
         <ul class="nav-list">
@@ -84,11 +91,9 @@
             <button onclick="checkPassword()">Submit</button>
         </div>
         <hr class="h" />
-    </header>
+      </header>
 
-    
-
-    <div id="addBookSection" style="display: none;">
+      <div id="addBookSection" style="display: none;">
         <form id="bookUploadForm" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="bookFile">Upload Book</label>
@@ -115,105 +120,6 @@
         <!-- Display uploaded books here -->
     </div>
 
-    <script>
-        // Function to toggle password section
-        async function togglePasswordSection() {
-            try {
-                const response = await fetch('/.netlify/functions/togglePasswordSection', {
-                    method: 'POST'
-                });
-                if (response.ok) {
-                    // Toggle password section based on response
-                    const { display } = await response.json();
-                    const passwordSection = document.getElementById('passwordSection');
-                    passwordSection.style.display = display ? 'block' : 'none';
-                } else {
-                    console.error('Failed to toggle password section:', response.statusText);
-                }
-            } catch (error) {
-                console.error('Error toggling password section:', error);
-            }
-        }
-
-        // Function to check password
-        async function checkPassword() {
-            const password = document.getElementById('password').value;
-            try {
-                const response = await fetch('/.netlify/functions/checkPassword', {
-                    method: 'POST',
-                    body: JSON.stringify({ password }),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                });
-                if (response.ok) {
-                    // Handle successful password check
-                    const { valid } = await response.json();
-                    if (valid) {
-                        const addBookSection = document.getElementById('addBookSection');
-                        addBookSection.style.display = 'block';
-                    } else {
-                        alert('Incorrect password. Please try again.');
-                    }
-                } else {
-                    console.error('Failed to check password:', response.statusText);
-                }
-            } catch (error) {
-                console.error('Error checking password:', error);
-            }
-        }
-
-        // Function to cancel adding a book
-        function cancelAddBook() {
-            const addBookSection = document.getElementById('addBookSection');
-            addBookSection.style.display = 'none';
-
-            togglePasswordSection(); // Reset password section display
-        }
-
-        // Function to display uploaded book
-        function displayBook(book) {
-            // Update UI to display book information
-            const bookElement = document.createElement('div');
-            bookElement.classList.add('book');
-            bookElement.innerHTML = `
-                <div class="description">
-                    <h3>${book.title}</h3>
-                    <p>${book.description}</p>
-                    <a href="${book.downloadLink}" class="download-button" download>Download</a>
-                </div>
-                <img src="${book.imageUrl}" alt="${book.title}">
-            `;
-            document.getElementById('bookList').appendChild(bookElement);
-        }
-
-        // Add event listener for book upload form submission
-        document.getElementById('bookUploadForm').addEventListener('submit', async (event) => {
-            event.preventDefault();
-
-            const formData = new FormData();
-            formData.append('book', document.getElementById('bookFile').files[0]);
-            formData.append('title', document.getElementById('bookTitle').value);
-            formData.append('description', document.getElementById('bookDescription').value);
-            formData.append('image', document.getElementById('bookImage').files[0]);
-
-            try {
-                const response = await fetch('/.netlify/functions/uploadBook', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                if (response.ok) {
-                    const newBook = await response.json();
-                    displayBook(newBook);
-                    cancelAddBook();
-                } else {
-                    console.error('Upload failed:', response.statusText);
-                }
-            } catch (error) {
-                console.error('Error uploading book:', error);
-            }
-        });
-    </script>
+    <script src="/functions/script.js"></script>
 </body>
-</html>
+</html> 
