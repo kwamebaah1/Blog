@@ -18,7 +18,6 @@ const handleBookUpload = async (formData) => {
 };
 
 // New function to handle book retrieval
-// New function to handle book retrieval
 const handleBookRetrieval = async () => {
     try {
         // Fetch books from your server or database
@@ -49,6 +48,7 @@ const handleBookRetrieval = async () => {
         };
     }
 };
+
 
 
 // Define a new handler function for your serverless function
