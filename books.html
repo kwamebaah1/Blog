@@ -4,24 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Two One Show</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Quicksand&display=swap"
-      rel="stylesheet"
-    />
     <link rel="stylesheet" href="index.css" />
     <link
       rel="icon"
       href="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/8049352/8049352-1636130317778-cf3f4afff543c.jpg"
       type="image/x-icon"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Marck+Script&family=Quicksand&display=swap"
+      rel="stylesheet"
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Lato&display=swap"
       rel="stylesheet"
@@ -31,95 +23,125 @@
 </head>
 <body>
     <header>
-        <img src="2show.jpeg" alt="Your Image Description" />
-        <hr />
-        <ul class="nav-list">
-          <li><a href="index.html">BLOG</a></li>
-          <li><a href="podcast.html">PODCAST</a></li>
-          <li><a href="books.html">BOOKS</a></li>
-          <li><a href="">FILMS</a></li>
-          <li><a href="">EVENTS</a></li>
-          <li><a href="">RESOURCES</a></li>
-          <li><a href="">ABOUT</a></li>
-        </ul>
-        <hr />
-        <p class="special-font">
-          Read our free ebook: 16 Rules for Living with Less
-        </p>
-        <hr />
-        <div class="image-container">
-          <img
-            src="https://d3t3ozftmdmh3i.cloudfront.net/production/podcast_uploaded/8049352/8049352-1636130317778-cf3f4afff543c.jpg"
-            alt="Your Image Description"
-          />
-          <div class="text-container">
-            <p class="headerf">
-              On every episode, <br />we <br/>explore a new topic that <br />the 21st
-              century youth is faced<br />
-              with and identify ways <br />to understand why we struggle
-              <br />with it as well as bring <br />out black and white strategies
-              to deal with it.
-            </p>
-          </div>
-        </div>
-        <hr class="h" />
-        <div class="icons">
-          <a href="https://www.facebook.com/thetwooneshow">
-          <i class="fa-brands fa-facebook"></i>
-        </a>
-        <a href="https://www.twitter.com">
-          <i class="fa-brands fa-twitter"></i>
-        </a>
-        <a href="https://www.instagram.com/thetwooneshow/?hl=en">
-          <i class="fa-brands fa-instagram"></i>
-        </a>
-        <a href="https://open.spotify.com/show/4kajB2Zi1KOoNPsJt2iu7X">
-          <i class="fa-brands fa-spotify"></i>
-        </a>
-        <a href="https://www.youtube.com">
-          <i class="fa-brands fa-youtube"></i>
-        </a>
-        
-        </div>
-        <hr class="h" />
-        <div id="icons">
-            <!-- Your other icons here -->
-            <span id="addBookIcon" class="icon" onclick="togglePasswordSection()">&#43;</span>
-        </div>
-        <div id="passwordSection" style="display: none;">
-            <input type="password" id="password" name="password" placeholder="Enter password">
-            <button onclick="checkPassword()">Submit</button>
-        </div>
-        <hr class="h" />
-      </header>
+        <!-- Header content -->
+    </header>
 
-      <div id="addBookSection" style="display: none;">
-        <form id="bookUploadForm" enctype="multipart/form-data">
-            <div class="form-group">
-                <label for="bookFile">Upload Book</label>
-                <input type="file" id="bookFile" name="bookFile" accept=".pdf">
-            </div>
-            <div class="form-group">
-                <label for="bookTitle">Title</label>
-                <input type="text" id="bookTitle" name="bookTitle" placeholder="Enter book title">
-            </div>
-            <div class="form-group">
-                <label for="bookDescription">Description</label>
-                <textarea id="bookDescription" name="bookDescription" placeholder="Enter book description"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="bookImage">Image</label>
-                <input type="file" id="bookImage" name="bookImage" accept="image/*">
-            </div>
-            <button type="submit">Upload Book</button>
-            <button type="button" onclick="cancelAddBook()">Cancel</button>
-        </form>
+    <div id="icons">
+        <!-- Your other icons here -->
+        <span id="addBookIcon" class="icon" onclick="togglePasswordSection()">&#43;</span>
+    </div>
+    <div id="passwordSection" style="display: none;">
+        <input type="password" id="password" name="password" placeholder="Enter password">
+        <button onclick="checkPassword()">Submit</button>
+    </div>
+
+    <div id="addBookSection" style="display: none;">
+        <!-- Form to upload book -->
     </div>
 
     <div id="bookList">
         <!-- Display uploaded books here -->
     </div>
 
-    <script src="/functions/script.js"></script>
+    <script>
+        // Function to toggle password section
+        async function togglePasswordSection() {
+            try {
+                const response = await fetch('/.netlify/functions/togglePasswordSection', {
+                    method: 'POST'
+                });
+                if (response.ok) {
+                    // Toggle password section based on response
+                    const { display } = await response.json();
+                    const passwordSection = document.getElementById('passwordSection');
+                    passwordSection.style.display = display ? 'block' : 'none';
+                } else {
+                    console.error('Failed to toggle password section:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error toggling password section:', error);
+            }
+        }
+
+        // Function to check password
+        async function checkPassword() {
+            const password = document.getElementById('password').value;
+            try {
+                const response = await fetch('/.netlify/functions/checkPassword', {
+                    method: 'POST',
+                    body: JSON.stringify({ password }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (response.ok) {
+                    // Handle successful password check
+                    const { valid } = await response.json();
+                    if (valid) {
+                        const addBookSection = document.getElementById('addBookSection');
+                        addBookSection.style.display = 'block';
+                    } else {
+                        alert('Incorrect password. Please try again.');
+                    }
+                } else {
+                    console.error('Failed to check password:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error checking password:', error);
+            }
+        }
+
+        // Function to cancel adding a book
+        function cancelAddBook() {
+            const addBookSection = document.getElementById('addBookSection');
+            addBookSection.style.display = 'none';
+
+            togglePasswordSection(); // Reset password section display
+        }
+
+        // Function to display uploaded book
+        function displayBook(book) {
+            // Update UI to display book information
+            const bookElement = document.createElement('div');
+            bookElement.classList.add('book');
+            bookElement.innerHTML = `
+                <div class="description">
+                    <h3>${book.title}</h3>
+                    <p>${book.description}</p>
+                    <a href="${book.downloadLink}" class="download-button" download>Download</a>
+                </div>
+                <img src="${book.imageUrl}" alt="${book.title}">
+            `;
+            document.getElementById('bookList').appendChild(bookElement);
+        }
+
+        // Add event listener for book upload form submission
+        document.getElementById('bookUploadForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const formData = new FormData();
+            formData.append('book', document.getElementById('bookFile').files[0]);
+            formData.append('title', document.getElementById('bookTitle').value);
+            formData.append('description', document.getElementById('bookDescription').value);
+            formData.append('image', document.getElementById('bookImage').files[0]);
+
+            try {
+                const response = await fetch('/.netlify/functions/uploadBook', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const newBook = await response.json();
+                    displayBook(newBook);
+                    cancelAddBook();
+                } else {
+                    console.error('Upload failed:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error uploading book:', error);
+            }
+        });
+    </script>
 </body>
 </html>
