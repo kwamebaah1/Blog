@@ -1,42 +1,7 @@
 // Remove all functions related to DOM manipulation
 
 // New function to handle book upload
-function togglePasswordSection() {
-    const passwordSection = document.getElementById('passwordSection');
-    passwordSection.style.display = passwordSection.style.display === 'none' ? 'block' : 'none';
-}
-
-function checkPassword() {
-    const password = document.getElementById('password').value;
-    // You should replace 'YOUR_PASSWORD' with the actual password stored in your system
-    if (password === 'braben') {
-        const passwordSection = document.getElementById('passwordSection');
-        passwordSection.style.display = 'none';
-
-        const addBookSection = document.getElementById('addBookSection');
-        addBookSection.style.display = 'block';
-    } else {
-        alert('Incorrect password. Please try again.');
-    }
-}
-
-function cancelAddBook() {
-    const addBookSection = document.getElementById('addBookSection');
-    addBookSection.style.display = 'none';
-
-    const passwordSection = document.getElementById('passwordSection');
-    passwordSection.style.display = 'block';
-}
-
-document.getElementById('bookUploadForm').addEventListener('submit', async (event) => {
-    event.preventDefault();
-
-    const formData = new FormData();
-    formData.append('book', document.getElementById('bookFile').files[0]);
-    formData.append('title', document.getElementById('bookTitle').value);
-    formData.append('description', document.getElementById('bookDescription').value);
-    formData.append('image', document.getElementById('bookImage').files[0]);
-
+const handleBookUpload = async (formData) => {
     try {
         const response = await fetch('https://gleaming-cuchufli-b12691.netlify.app/.netlify/functions/script', {
             method: 'POST',
@@ -45,26 +10,35 @@ document.getElementById('bookUploadForm').addEventListener('submit', async (even
 
         if (response.ok) {
             const newBook = await response.json();
-            displayBook(newBook);
-            cancelAddBook();
+            console.log('Book uploaded successfully:', newBook);
         } else {
             console.error('Upload failed:', response.statusText);
         }
     } catch (error) {
         console.error('Error uploading book:', error);
     }
-});
+};
 
-function displayBook(book) {
-    const bookElement = document.createElement('div');
-    bookElement.classList.add('book');
-    bookElement.innerHTML = `
-        <div class="description">
-            <h3>${book.title}</h3>
-            <p>${book.description}</p>
-            <a href="${book.downloadLink}" class="download-button" download>Download</a>
-        </div>
-        <img src="${book.imageUrl}" alt="${book.title}">
-    `;
-    document.getElementById('bookList').appendChild(bookElement);
-}
+// Define a new handler function for your serverless function
+exports.handler = async (event) => {
+    // Check if it's a POST request
+    if (event.httpMethod === 'POST') {
+        // Parse the incoming request body
+        const formData = JSON.parse(event.body);
+        
+        // Pass the form data to the book upload handler function
+        await handleBookUpload(formData);
+        
+        // Respond with a success message
+        return {
+            statusCode: 200,
+            body: JSON.stringify({ message: 'Book uploaded successfully' })
+        };
+    } else {
+        // Respond with an error for other HTTP methods
+        return {
+            statusCode: 405,
+            body: JSON.stringify({ error: 'Method Not Allowed' })
+        };
+    }
+};

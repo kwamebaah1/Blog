@@ -119,7 +119,32 @@
     <div id="bookList">
         <!-- Display uploaded books here -->
     </div>
+    <script>
+        document.getElementById('bookUploadForm').addEventListener('submit', async (event) => {
+            event.preventDefault();
 
-    <script src="/functions/script.js"></script>
+            const formData = new FormData();
+            formData.append('book', document.getElementById('book').files[0]);
+
+            try {
+                const response = await fetch('/.netlify/functions/uploadBook', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    alert(data.message); // Display success message
+                } else {
+                    const errorData = await response.json();
+                    alert(`Upload failed: ${errorData.error}`); // Display error message
+                }
+            } catch (error) {
+                console.error('Error uploading book:', error);
+            }
+        });
+    </script>
+
+    <script src="frontend.js"></script>
 </body>
 </html> 
