@@ -48,22 +48,19 @@ const fetchAndDisplayBooks = async () => {
 
         if (response.ok) {
             const books = await response.json();
+            console.log('Received data:', books); // Log the received data
+
             const bookList = document.getElementById('bookItems');
 
             // Clear existing list items
             bookList.innerHTML = '';
 
-            // Check if books is an array before iterating
-            if (Array.isArray(books)) {
-                // Populate the list with fetched books
-                books.forEach(book => {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = book.title; // Display book title, you can modify to display other details
-                    bookList.appendChild(listItem);
-                });
-            } else {
-                console.error('Received invalid data format: expected an array');
-            }
+            // Populate the list with fetched books
+            books.forEach(book => {
+                const listItem = document.createElement('li');
+                listItem.textContent = book.title; // Display book title, you can modify to display other details
+                bookList.appendChild(listItem);
+            });
         } else {
             console.error('Failed to fetch books:', response.statusText);
         }
