@@ -124,7 +124,7 @@
             event.preventDefault();
 
             const formData = new FormData();
-            formData.append('book', document.getElementById('book').files[0]);
+            formData.append('book', document.getElementById('bookFile').files[0]);
 
             try {
                 const response = await fetch('/.netlify/functions/uploadBook', {
