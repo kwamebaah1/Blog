@@ -45,7 +45,7 @@ function displayBook(book) {
 // Fetch and display books
 const fetchAndDisplayBooks = async () => {
     try {
-        const response = await fetch('https://gleaming-cuchufli-b12691.netlify.app/.netlify/functions/getBooks');
+        const response = await fetch('https://gleaming-cuchufli-b12691.netlify.app/.netlify/functions/script');
 
         if (response.ok) {
             const books = await response.json();

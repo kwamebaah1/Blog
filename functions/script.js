@@ -17,9 +17,27 @@ const handleBookUpload = async (formData) => {
     }
 };
 
+// New function to handle book retrieval
+const handleBookRetrieval = async () => {
+    try {
+        const response = await fetch('https://gleaming-cuchufli-b12691.netlify.app/.netlify/functions/getBooks', {
+            method: 'GET'
+        });
+
+        if (response.ok) {
+            const books = await response.json();
+            console.log('Books retrieved successfully:', books);
+            // Update the UI to display the retrieved books
+        } else {
+            console.error('Failed to retrieve books:', response.statusText);
+        }
+    } catch (error) {
+        console.error('Error retrieving books:', error);
+    }
+};
+
 // Define a new handler function for your serverless function
 exports.handler = async (event) => {
-    // Check if it's a POST request
     if (event.httpMethod === 'POST') {
         try {
             // Parse the incoming request body if it's not empty
@@ -41,6 +59,13 @@ exports.handler = async (event) => {
                 body: JSON.stringify({ error: 'Bad Request' })
             };
         }
+    } else if (event.httpMethod === 'GET') {
+        // Handle GET requests for retrieving books
+        await handleBookRetrieval();
+        return {
+            statusCode: 200,
+            body: JSON.stringify({ message: 'Books retrieved successfully' })
+        };
     } else {
         // Respond with an error for other HTTP methods
         return {
