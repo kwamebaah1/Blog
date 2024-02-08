@@ -1,5 +1,3 @@
-// Remove all functions related to DOM manipulation
-
 // New function to handle book upload
 const handleBookUpload = async (formData) => {
     try {
@@ -23,17 +21,26 @@ const handleBookUpload = async (formData) => {
 exports.handler = async (event) => {
     // Check if it's a POST request
     if (event.httpMethod === 'POST') {
-        // Parse the incoming request body
-        const formData = JSON.parse(event.body);
-        
-        // Pass the form data to the book upload handler function
-        await handleBookUpload(formData);
-        
-        // Respond with a success message
-        return {
-            statusCode: 200,
-            body: JSON.stringify({ message: 'Book uploaded successfully' })
-        };
+        try {
+            // Parse the incoming request body if it's not empty
+            const formData = event.body ? JSON.parse(event.body) : {};
+
+            // Pass the form data to the book upload handler function
+            await handleBookUpload(formData);
+            
+            // Respond with a success message
+            return {
+                statusCode: 200,
+                body: JSON.stringify({ message: 'Book uploaded successfully' })
+            };
+        } catch (error) {
+            // Respond with an error if there's an issue parsing the request body
+            console.error('Error parsing request body:', error);
+            return {
+                statusCode: 400,
+                body: JSON.stringify({ error: 'Bad Request' })
+            };
+        }
     } else {
         // Respond with an error for other HTTP methods
         return {
