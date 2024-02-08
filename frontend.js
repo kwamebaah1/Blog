@@ -42,7 +42,6 @@ function displayBook(book) {
     document.getElementById('bookList').appendChild(bookElement);
 }
 
-// Fetch and display books
 const fetchAndDisplayBooks = async () => {
     try {
         const response = await fetch('https://gleaming-cuchufli-b12691.netlify.app/.netlify/functions/script');
@@ -54,12 +53,17 @@ const fetchAndDisplayBooks = async () => {
             // Clear existing list items
             bookList.innerHTML = '';
 
-            // Populate the list with fetched books
-            books.forEach(book => {
-                const listItem = document.createElement('li');
-                listItem.textContent = book.title; // Display book title, you can modify to display other details
-                bookList.appendChild(listItem);
-            });
+            // Check if books is an array before iterating
+            if (Array.isArray(books)) {
+                // Populate the list with fetched books
+                books.forEach(book => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = book.title; // Display book title, you can modify to display other details
+                    bookList.appendChild(listItem);
+                });
+            } else {
+                console.error('Received invalid data format: expected an array');
+            }
         } else {
             console.error('Failed to fetch books:', response.statusText);
         }
