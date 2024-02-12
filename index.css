@@ -407,3 +407,72 @@ button:hover {
   font-weight: 900;
   display: none;
 }
+
+/* CSS for styling book items */
+#bookList{
+  text-align: left;
+  width: 32%;
+  margin-right: 2%;
+}
+
+.special-fonti {
+  font-family: "Marck Script", cursive;
+  text-align: left;
+}
+
+
+@media only screen and (max-width: 768px) {
+  #addBookSection,
+  #bookList {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+/* Mobile styles */
+@media only screen and (max-width: 480px) {
+  #addBookSection,
+  #bookList {
+    width: 90%;
+    margin-right: 0;
+  }
+
+  ul#bookItems{
+    padding: 0;
+  }
+
+  .form-group label {
+    font-size: 16px;
+  }
+
+  input[type="file"],
+  input[type="text"],
+  textarea {
+    width: calc(100% - 16px);
+  }
+
+  .alert {
+    width: 100%;
+  }
+
+}
+
+.vpnmsg{
+  margin: 0;
+  width: 30%;
+  text-align: left;
+}
+
+/* Tablet styles */
+@media only screen and (max-width: 768px) {
+  .vpnmsg {
+    width: 50%;
+  }
+}
+
+/* Mobile styles */
+@media only screen and (max-width: 480px) {
+  .vpnmsg {
+    width: 90%;
+  }
+}

@@ -51,18 +51,37 @@ const firebaseConfig = {
     return document.getElementById(id).value;
   }
 
-  // Function to read data from Firebase and display it on the website
-function displayData() {
-  bookformDB.on('value', function(snapshot) {
-      document.getElementById('bookItems').innerHTML = ''; // Clear previous data
-      snapshot.forEach(function(childSnapshot) {
-          var childData = childSnapshot.val();
-          var listItem = document.createElement('li');
-          listItem.textContent = `${childData.bookTitle}: ${childData.bookDescription}`;
-          document.getElementById('bookItems').appendChild(listItem);
-      });
-  });
-}
+  function displayData() {
+    bookformDB.on('value', function(snapshot) {
+        document.getElementById('bookItems').innerHTML = ''; // Clear previous data
+        snapshot.forEach(function(childSnapshot) {
+            var childData = childSnapshot.val();
 
-// Call the displayData function to initially display data when the page loads
-displayData();
+            // Create elements for book title
+            var titleElement = document.createElement('h2');
+            titleElement.textContent = childData.bookTitle;
+            titleElement.style.fontWeight = 'bold';
+            titleElement.style.fontSize = '24px';
+            document.getElementById('bookItems').appendChild(titleElement);
+
+            // Create element for book description
+            var descriptionElement = document.createElement('p');
+            descriptionElement.textContent = childData.bookDescription;
+            document.getElementById('bookItems').appendChild(descriptionElement);
+
+            // Create element for download link
+            var downloadLink = document.createElement('a');
+            downloadLink.textContent = 'Click here to download';
+            downloadLink.href = childData.bookFile;
+            downloadLink.style.display = 'block'; // Place link on a new line
+            document.getElementById('bookItems').appendChild(downloadLink);
+
+            // Add a horizontal line for visual separation between book items
+            var hrElement = document.createElement('hr');
+            document.getElementById('bookItems').appendChild(hrElement);
+        });
+    });
+}
+document.addEventListener('DOMContentLoaded', function () {
+  displayData();
+});
