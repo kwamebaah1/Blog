@@ -94,10 +94,11 @@
       </header>
 
       <div id="addBookSection" style="display: none;">
-        <form id="bookUploadForm" enctype="multipart/form-data" netlify>
+        <form id="bookUploadForm" enctype="multipart/form-data" >
+            <div class="alert">The Book was submitted</div>
             <div class="form-group">
                 <label for="bookFile">Upload Book</label>
-                <input type="file" id="bookFile" name="bookFile" accept=".pdf">
+                <input type="text" id="bookFile" name="bookFile" placeholder="Enter url">
             </div>
             <div class="form-group">
                 <label for="bookTitle">Title</label>
@@ -107,47 +108,21 @@
                 <label for="bookDescription">Description</label>
                 <textarea id="bookDescription" name="bookDescription" placeholder="Enter book description"></textarea>
             </div>
-            <div class="form-group">
-                <label for="bookImage">Image</label>
-                <input type="file" id="bookImage" name="bookImage" accept="image/*">
-            </div>
+            
             <button type="submit" onclick="uploadBook()">Upload Book</button>
             <button type="button" onclick="cancelAddBook()">Cancel</button>
         </form>
     </div>
 
-
     <div id="bookList">
         <ul id="bookItems"></ul>
         <!-- Display uploaded books here -->
     </div>
-    <script>
-        const uploadBook = async () => {
-            const formData = new FormData();
-            formData.append('book', document.getElementById('bookFile').files[0]);
-            formData.append('title', document.getElementById('bookTitle').value);
-            formData.append('description', document.getElementById('bookDescription').value);
-            formData.append('image', document.getElementById('bookImage').files[0]);
-
-            try {
-                const response = await fetch('https://gleaming-cuchufli-b12691.netlify.app/.netlify/functions/uploadBook', {
-                    method: 'POST',
-                    body: formData
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    alert(data.message); // Display success message
-                } else {
-                    const errorData = await response.json();
-                    alert(`Upload failed: ${errorData.error}`); // Display error message
-                }
-            } catch (error) {
-                console.error('Error uploading book:', error);
-            }
-        };
-    </script>
-
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
     <script src="frontend.js"></script>
+    <script src="form.js"></script>
+    
 </body>
 </html> 
+

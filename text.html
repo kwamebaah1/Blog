@@ -1,0 +1,64 @@
+<script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-analytics.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-database.js"></script>
+
+
+    Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js";
+    import {  getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/7.14.1/firebase-database.js";
+    
+    
+    const firebaseConfig = {
+      apiKey: "AIzaSyD_4ID3gqnsuaXfZxlOVTYMeqTnea9j1zU",
+      authDomain: "bookform-f06cd.firebaseapp.com",
+      databaseURL: "https://bookform-f06cd-default-rtdb.firebaseio.com",
+      projectId: "bookform-f06cd",
+      storageBucket: "bookform-f06cd.appspot.com",
+      messagingSenderId: "222833193309",
+      appId: "1:222833193309:web:c3d8635444e35cc761b8b4",
+      measurementId: "G-NZM0THPWLV"
+    };
+    
+    // Initialize Firebase
+    
+    const app = initializeApp(firebaseConfig);
+    const db = getDatabase(app);
+    
+    let bookItems = document.getElementById("bookItems");
+    
+    function getBooks() {
+        const dbRef = ref(db, 'BookForm');
+    
+        onValue(dbRef, (snapshot) => {
+            const data = snapshot.val();
+            for (const key in data) {
+                if (Object.hasOwnProperty.call(data, key)) {
+                    const value = data[key];
+                    AddBookAsListItem(value);
+                }
+            }
+        }, {
+            onlyOnce: true // This ensures the listener is called only once
+        });
+    }
+    
+    function AddBookAsListItem(value) {
+        let bookTitle = document.createElement('li');
+        bookTitle.innerHTML = "Book Title: " + value.bookTitle;
+    
+        let bookDescription = document.createElement('li');
+        bookDescription.innerHTML = "Book Description: " + value.bookDescription;
+    
+        let bookImage = document.createElement('li');
+        bookImage.innerHTML = "Book Image: " + value.bookImage;
+    
+        let bookFile = document.createElement('li');
+        bookFile.innerHTML = "Book File: " + value.bookFile;
+    
+        let ul = document.createElement('ul');
+        ul.append(bookTitle, bookDescription, bookImage, bookFile);
+    
+        bookItems.append(ul);
+    }
+    
+    window.addEventListener('load', getBooks);

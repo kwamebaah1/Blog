@@ -42,32 +42,3 @@ function displayBook(book) {
     document.getElementById('bookList').appendChild(bookElement);
 }
 
-const fetchAndDisplayBooks = async () => {
-    try {
-        const response = await fetch('https://gleaming-cuchufli-b12691.netlify.app/.netlify/functions/script');
-
-        if (response.ok) {
-            const books = await response.json();
-            console.log('Received data:', books); // Log the received data
-
-            const bookList = document.getElementById('bookItems');
-
-            // Clear existing list items
-            bookList.innerHTML = '';
-
-            // Populate the list with fetched books
-            books.forEach(book => {
-                const listItem = document.createElement('li');
-                listItem.textContent = book.title; // Display book title, you can modify to display other details
-                bookList.appendChild(listItem);
-            });
-        } else {
-            console.error('Failed to fetch books:', response.statusText);
-        }
-    } catch (error) {
-        console.error('Error fetching books:', error);
-    }
-};
-
-// Call the fetchAndDisplayBooks function to load books when the page loads
-window.addEventListener('load', fetchAndDisplayBooks);
