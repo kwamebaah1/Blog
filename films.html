@@ -37,7 +37,7 @@
           <li><a href="index.html">BLOG</a></li>
           <li><a href="podcast.html">PODCAST</a></li>
           <li><a href="books.html">BOOKS</a></li>
-          <li><a href="films.html">FILMS</a></li>
+          <li><a href="">FILMS</a></li>
           <li><a href="">EVENTS</a></li>
           <li><a href="">RESOURCES</a></li>
           <li><a href="">ABOUT</a></li>
@@ -79,83 +79,37 @@
         <a href="https://www.youtube.com">
           <i class="fa-brands fa-youtube"></i>
         </a>
-        
-        </div>
-        <hr class="h" />
-        <div id="icons">
-            <!-- Your other icons here -->
-            <span id="addBookIcon" class="icon" onclick="togglePasswordSection()">&#43;</span>
-        </div>
-        <div id="passwordSection" style="display: none;">
-            <input type="password" id="password" name="password" placeholder="Enter password">
-            <button onclick="checkPassword()">Submit</button>
         </div>
         <hr class="h" />
       </header>
 
-      <div id="addBookSection" style="display: none;">
-        <form id="bookUploadForm" enctype="multipart/form-data" >
-            <div class="alert">The Book was submitted</div>
-            <div class="form-group">
-                <label for="bookFile">Upload Book</label>
-                <input type="text" id="bookFile" name="bookFile" placeholder="Enter url">
-            </div>
-            <div class="form-group">
-                <label for="bookTitle">Title</label>
-                <input type="text" id="bookTitle" name="bookTitle" placeholder="Enter book title">
-            </div>
-            <div class="form-group">
-                <label for="bookDescription">Description</label>
-                <textarea id="bookDescription" name="bookDescription" placeholder="Enter book description"></textarea>
-            </div>
-            
-            <button type="submit" onclick="uploadBook()">Upload Book</button>
-            <button type="button" onclick="cancelAddBook()">Cancel</button>
-        </form>
-
+      <section class="films">
+        <h1>'Uncontrollable' A Short Film About Anxiety</h1>
+        <div class="container">
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/ymTm7dJP5L4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
         
-    </div>
-
-    <div id="bookList">
-        <ul id="bookItems"></ul>
-        <!-- Display uploaded books here -->
-        
-    </div>
-
-    <div class="vpnmsg">
-      <p class="special-fonti">
-        If resources aren't loading, Please turn
-         off all vpn  and connection<br> boosters and try again
-      </p>
-      <hr>
-    </div>
-
-    <section class="share">
-      
-      <div>
-        <div>
-          <h4 class="share1">SHARE</h4>
-          <a href="https://www.facebook.com/thetwooneshow">
-            <i class="fa-brands fa-facebook"></i>
-          </a>
-          <i class="fa-brands fa-twitter"></i>
-          <a href="https://www.instagram.com/thetwooneshow/?hl=en">
-            <i class="fa-brands fa-instagram"></i>
-          </a>
-          <i class="fa-brands fa-youtube"></i>
+        <h2 class="minh2">Films By The Minimalists</h2>
+        <div class="container">
+            <iframe width="100%" height="315" src="https://www.youtube.com/embed/J8DGjUv-Vjc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </div>
         <hr>
-        
-    </section>
+      </section>
 
-    
-    
-
-    
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
-    <script src="frontend.js"></script>
-    <script src="form.js"></script>
-    
+      <section class="share">
+        <div>
+          <div>
+            <h4 class="share1">SHARE</h4>
+            <a href="https://www.facebook.com/thetwooneshow">
+              <i class="fa-brands fa-facebook"></i>
+            </a>
+            <i class="fa-brands fa-twitter"></i>
+            <a href="https://www.instagram.com/thetwooneshow/?hl=en">
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+            <i class="fa-brands fa-youtube"></i>
+          </div>
+          <hr>
+      </section>
 </body>
-</html> 
-
+</html>

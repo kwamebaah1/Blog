@@ -433,7 +433,7 @@ button:hover {
 @media only screen and (max-width: 480px) {
   #addBookSection,
   #bookList {
-    width: 90%;
+    width: 89%;
     margin-right: 0;
   }
 
@@ -466,13 +466,37 @@ button:hover {
 /* Tablet styles */
 @media only screen and (max-width: 768px) {
   .vpnmsg {
-    width: 50%;
+    width: 70%;
   }
 }
 
 /* Mobile styles */
 @media only screen and (max-width: 480px) {
   .vpnmsg {
-    width: 90%;
+    width: 89%;
   }
 }
+
+.films{
+  width: 30%;
+  margin-top: 2%;
+}
+
+.minh2{
+  padding-top: 4%;
+  color: #007bff;
+}
+
+@media screen and (max-width: 991px) {
+  .films {
+    width: 50%; /* Adjust the width to occupy 50% of the screen on tablets */
+  }
+}
+
+/* Media query for mobile devices */
+@media screen and (max-width: 767px) {
+  .films {
+    width: 89%; /* Adjust the width to occupy full width on mobile devices */
+  }
+}
+
