@@ -611,3 +611,9 @@ button:hover {
     font-size: 1.3rem; 
   }
 }
+
+
+
+#podcastItems {
+  padding: 0;
+}

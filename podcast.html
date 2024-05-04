@@ -108,8 +108,42 @@
             <p>RSS</p>
         </a>
       </div>
+        <div id="icons">
+            <!-- Your other icons here -->
+            <span id="addPodcastIcon" class="icon" onclick="togglePasswordSection()">&#43;</span>
+        </div>
+        <div id="passwordSection" style="display: none;">
+            <input type="password" id="password" name="password" placeholder="Enter password">
+            <button onclick="checkPassword()">Submit</button>
+        </div>
+        <hr class="h" />
+        <div id="addPodcastSection" style="display: none;">
+          <form id="podcastUploadForm" enctype="multipart/form-data" >
+              <div class="alert">The Podcast was submitted</div>
+              <div class="form-group">
+                  <label for="bookFile">Upload Podcast</label>
+                  <input type="text" id="bookFile" name="bookFile" placeholder="Enter url">
+              </div>
+              <div class="form-group">
+                  <label for="bookTitle">Title</label>
+                  <input type="text" id="bookTitle" name="bookTitle" placeholder="Enter podcast title">
+              </div>
+              
+              <button type="submit">Upload Podcast</button>
+              <button type="button" onclick="cancelAddPodcast()">Cancel</button>
+          </form>
+  
+          
+      </div>
+  
+      
       <div class="spacingi">
         <h2 class="archiveh3">Episodes</h2>
+        <div id="podcastList">
+          <ul id="podcastItems"></ul>
+          <!-- Display uploaded podcasts here -->
+          
+      </div>
         <div class="episode">
           <a href="https://open.spotify.com/episode/2EPuIhEc2439odQ5jUIoBt">
           <i class="fa-solid fa-plus"></i>
@@ -420,6 +454,8 @@
         </div>
         <hr>
     </section>
-   
+    <script src="podcast.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+    <script src="pod.js"></script>
   </body>
 </html>

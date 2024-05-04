@@ -81,7 +81,18 @@
         </a>
         </div>
         <hr class="h" />
+        <div id="icons">
+          <!-- Your other icons here -->
+          <span id="addBookIcon" class="icon" onclick="togglePasswordSection()">&#43;</span>
+      </div>
+      <div id="passwordSection" style="display: none;">
+          <input type="password" id="password" name="password" placeholder="Enter password">
+          <button onclick="checkPassword()">Submit</button>
+      </div>
+      <hr class="h" />
       </header>
+
+      
 
       <section class="films">
         <h1>'Uncontrollable' A Short Film About Anxiety</h1>
@@ -95,6 +106,22 @@
         </div>
         <hr>
       </section>
+
+      <div id="addBookSection" style="display: none;">
+        <form id="bookUploadForm" enctype="multipart/form-data" >
+            <div class="alert">The Book was submitted</div>
+            <div class="form-group">
+                <label for="bookFile">Upload Film Url</label>
+                <input type="text" id="bookFile" name="bookFile" placeholder="Enter url">
+            </div>
+            <div class="form-group">
+                <label for="bookTitle">Title</label>
+                <input type="text" id="bookTitle" name="bookTitle" placeholder="Enter book title">
+            </div>
+            
+            <button type="submit" onclick="uploadBook()">Upload Book</button>
+            <button type="button" onclick="cancelAddBook()">Cancel</button>
+        </form>
 
       <section class="share">
         <div>
@@ -111,5 +138,7 @@
           </div>
           <hr>
       </section>
+
+    <script src="frontend.js"></script>
 </body>
 </html>
